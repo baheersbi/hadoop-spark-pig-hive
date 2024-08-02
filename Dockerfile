@@ -2,7 +2,7 @@
 #
 # docker build -t suhothayan/hadoop-spark-pig-hive:2.9.2 .
 
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 MAINTAINER Suhothayan
 
 USER root
@@ -112,8 +112,11 @@ RUN service ssh start \
 #mr job
 RUN apt-get install -y python-pip \
     && pip install mrjob
-
-# spark
+# sudo add-apt-repository universe
+# sudo apt update
+# sudo apt install python3.9
+#
+##spark
 RUN curl -s https://www-eu.apache.org/dist/spark/spark-2.4.3/spark-2.4.3-bin-without-hadoop-scala-2.12.tgz | tar -xz -C /usr/local
 ENV SPARK_HOME /usr/local/spark-2.4.3-bin-without-hadoop-scala-2.12/
 RUN ln -s $SPARK_HOME /usr/local/spark
